@@ -8,15 +8,24 @@ Linux Mint Live CD customization tool
 
 ### Usage
 
-Place files in a separate directory
-```
-project
-|-- build.sh
-|-- config.sh
-|-- linuxmint-19-cinnamon-64bit-v2.iso
+1\. Clone && make
+```bash
+git clone https://github.com/dontru/mint-customization.git
+cd mint-customization
+make
+cd build
 ```
 
-Put your customizations in *config.sh*. For example:
+2\. Copy the iso file to the *build* directory
+
+3\. Put your customizations in *build/config.sh*
+
+4\. Run *build/build.sh*
+```bash
+sudo ./build.sh
+```
+
+### Example config.sh
 ```bash
 #!/bin/bash
 
@@ -27,9 +36,4 @@ wget -O atom-amd64.deb "https://atom.io/download/deb"
 dpkg -i atom-amd64.deb
 
 apt upgrade -y
-```
-
-Run build.sh
-```bash
-sudo ./build.sh linuxmint-19-cinnamon-64bit-v2.iso
 ```

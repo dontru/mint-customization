@@ -1,7 +1,9 @@
 #!/bin/bash
 
-if [[ -z "$1" ]]; then
-  echo "usage: sudo ./build.sh input_file.iso"
+ISO=$(ls -p | grep -v / | grep -F .iso | grep iso$ -m 1)
+
+if [[ -z "$ISO" ]]; then
+  echo "Couldn't find iso file in the current directory"
   exit
 fi
 
@@ -11,7 +13,6 @@ if [[ "$EUID" -ne 0 ]]; then
 fi
 
 sudo apt install -y squashfs-tools genisoimage
-ISO="$1"
 
 mkdir livecdtmp
 mv $ISO livecdtmp
