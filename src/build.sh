@@ -32,8 +32,12 @@ sudo mount --bind /dev/ edit/dev
 
 mkdir edit/mydir
 chmod -R 777 edit/mydir
-cp ../config.sh edit/mydir/
-cp ../gsettings edit/mydir/
+
+(
+cd ..
+contents=$(ls -p | grep -E -v "^livecdtmp/$|^build.sh$")
+cp -r $contents livecdtmp/edit/mydir/
+)
 
 cat << EOF > edit/mydir/chroot.sh
 #!/bin/bash
