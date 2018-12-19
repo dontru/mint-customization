@@ -4,12 +4,12 @@ ISO=$(ls -p | grep -v / | grep -F .iso | grep iso$ -m 1)
 
 if [[ -z "$ISO" ]]; then
   echo "Couldn't find iso file in the current directory"
-  exit
+  exit 1
 fi
 
 if [[ "$EUID" -ne 0 ]]; then
   echo "Please run as root"
-  exit
+  exit 2
 fi
 
 sudo apt install -y squashfs-tools genisoimage
@@ -55,7 +55,7 @@ ln -s /bin/true /sbin/initctl
 
 cd /mydir
 
-if [ -f config.sh ]; then
+if [[ -f config.sh ]]; then
   . config.sh
 fi
 
