@@ -2,6 +2,7 @@ all:
 	mkdir -p build
 	cp src/build.sh build
 	cp src/config.sh build
+	cp src/keyboard.py build
 	g++ -Wall -Wextra src/gsettings.cpp -o build/gsettings
 
 clean:
